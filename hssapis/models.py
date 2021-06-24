@@ -14,10 +14,10 @@ FacultyType = [
 ]
 
 class Faculty(models.Model):
-    name = models.CharField(max_length=40, null=True, blank=True)
+    name = models.CharField(max_length=40)
     img = models.ImageField( upload_to='faculty/', blank=True, null=True)
-    email = models.EmailField(max_length=254)
-    phone = models.CharField(max_length=10)
+    email = models.EmailField(max_length=254, null=True, blank=True)
+    phone = models.CharField(max_length=10, null=True, blank=True)
     interests = models.CharField(max_length=200, null=True, blank=True)
     faculty_profile = models.URLField(blank=True, null=True)
     type = models.CharField(max_length=20, choices = FacultyType, default="Professor")
@@ -31,10 +31,11 @@ StudentType = [
     ("Part Time", "Part Time"),
 ]
 class Student(models.Model):
-    name = models.CharField(max_length=40, null=True, blank=True)
+    name = models.CharField(max_length=40)
     img = models.ImageField( upload_to='student/', blank=True, null=True)
-    email = models.EmailField(max_length=254)
+    email = models.EmailField(max_length=254, null=True, blank=True)
     joined = models.IntegerField(null=True, blank=True)
+    discipline = models.CharField(max_length=30, null=True, blank=True)
     research = models.CharField(max_length=200, null=True, blank=True)
     supervisor = models.CharField(max_length=200, null=True, blank=True)
     thesis = models.TextField(null=True, blank=True)
@@ -134,7 +135,7 @@ class Award(models.Model):
 class Past_Talk(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
     date = models.DateField(blank=True, null=True)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.name + ' ' + self.date
@@ -142,7 +143,7 @@ class Past_Talk(models.Model):
 class Special_Talk(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
     date = models.DateField(blank=True, null=True)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     img1 = models.ImageField( upload_to='special_talk/', blank=True, null=True)
     img2 = models.ImageField( upload_to='special_talk/', blank=True, null=True)
     img3 = models.ImageField( upload_to='special_talk/', blank=True, null=True)
@@ -159,8 +160,8 @@ event_type = [
 class Conf_Work_Pres(models.Model):
     headline = models.CharField(max_length=100, null=True, blank=True)
     place = models.CharField(max_length=20, null=True, blank=True)
-    date = models.DateField()
-    description = models.TextField()
+    date = models.DateField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
     type = models.CharField(max_length=20, choices=event_type, default="Conference")
 
     def __str__(self):

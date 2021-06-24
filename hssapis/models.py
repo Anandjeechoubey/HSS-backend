@@ -15,7 +15,7 @@ FacultyType = [
 
 class Faculty(models.Model):
     name = models.CharField(max_length=40, null=True, blank=True)
-    img = models.CharField(max_length=50, null=True, blank=True)
+    img = models.ImageField( upload_to='faculty/', blank=True, null=True)
     email = models.EmailField(max_length=254)
     phone = models.CharField(max_length=10)
     interests = models.CharField(max_length=200, null=True, blank=True)
@@ -32,7 +32,7 @@ StudentType = [
 ]
 class Student(models.Model):
     name = models.CharField(max_length=40, null=True, blank=True)
-    img = models.CharField(max_length=50, null=True, blank=True)
+    img = models.ImageField( upload_to='student/', blank=True, null=True)
     email = models.EmailField(max_length=254)
     joined = models.IntegerField(null=True, blank=True)
     research = models.CharField(max_length=200, null=True, blank=True)
@@ -48,7 +48,7 @@ class Student(models.Model):
 # Office Staff
 class Office_staff(models.Model):
     name = models.CharField(max_length=40, null=True, blank=True)
-    img = models.CharField(max_length=50, null=True, blank=True)
+    img = models.ImageField( upload_to='staff/', blank=True, null=True)
     designation = models.CharField(max_length=30, null=True, blank=True)
 
     def __str__(self):
@@ -69,7 +69,7 @@ class Announcement(models.Model):
 class News(models.Model):
     headline = models.CharField(max_length=100, null=True, blank=True)
     subtext = models.TextField(blank=True, null=True)
-    img = models.CharField(max_length=50, null=True, blank=True)
+    img = models.ImageField( upload_to='news/', blank=True, null=True)
     link = models.URLField(blank=True, null=True)
 
     def __str__(self):
@@ -78,7 +78,7 @@ class News(models.Model):
 class Phd_awarded(models.Model):
     name = models.CharField(max_length=40, null=True, blank=True)
     thesis = models.TextField(blank=True, null=True)
-    img = models.CharField(max_length=50, null=True, blank=True)
+    img = models.ImageField( upload_to='phd_awarded/', blank=True, null=True)
     disicpline = models.CharField(max_length=20, null=True, blank=True)
     supervisor = models.CharField(max_length=100, null=True, blank=True)
     link = models.URLField(blank=True, null=True)
@@ -103,7 +103,7 @@ CommitteeList = [
 class CommitteePerson(models.Model):
     committee = models.CharField(max_length=100, choices=CommitteeList, null=True, blank=True)
     name = models.CharField(max_length=40, null=True, blank=True)
-    img = models.CharField(max_length=50, null=True, blank=True)
+    img = models.ImageField( upload_to='committee/', blank=True, null=True)
     designation = models.CharField(max_length=30, null=True, blank=True)
 
     def __str__(self):
@@ -143,9 +143,9 @@ class Special_Talk(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
     date = models.DateField(blank=True, null=True)
     description = models.TextField()
-    img1 = models.URLField(blank=True, null=True)
-    img2 = models.URLField(blank=True, null=True)
-    img3 = models.URLField(blank=True, null=True)
+    img1 = models.ImageField( upload_to='special_talk/', blank=True, null=True)
+    img2 = models.ImageField( upload_to='special_talk/', blank=True, null=True)
+    img3 = models.ImageField( upload_to='special_talk/', blank=True, null=True)
 
     def __str__(self):
         return self.name + " " + self.date

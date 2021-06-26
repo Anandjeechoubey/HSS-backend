@@ -156,3 +156,14 @@ DEFAULT_FILE_STORAGE = 'backend.storage_backend.MediaStorage'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CORSHEADERS
+CORS_ALLOW_METHODS = [
+    'GET',
+]
+
+ACCESS_CONTROL_ALLOW_METHODS = [
+    'GET',
+]
+
+ACCESS_CONTROL_ALLOW_ORIGIN = ["*"]

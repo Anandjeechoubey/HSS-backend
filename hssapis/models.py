@@ -18,7 +18,7 @@ class Faculty(models.Model):
     img = models.ImageField( upload_to='faculty/', blank=True, null=True)
     email = models.EmailField(max_length=254, null=True, blank=True)
     phone = models.CharField(max_length=10, null=True, blank=True)
-    interests = models.CharField(max_length=200, null=True, blank=True)
+    interests = models.TextField(null=True, blank=True)
     faculty_profile = models.URLField(blank=True, null=True)
     type = models.CharField(max_length=20, choices = FacultyType, default="Professor")
 

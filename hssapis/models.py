@@ -60,7 +60,7 @@ class Office_staff(models.Model):
 ## Home #
 #Announcements
 class Announcement(models.Model):
-    date = models.DateField(auto_now_add=True)
+    date = models.CharField(max_length=25, null=True, blank=True)
     headline = models.CharField(max_length=200, null=True, blank=True)
     attachments = models.URLField(blank=True, null=True)
 
@@ -134,7 +134,7 @@ class Award(models.Model):
 #talks
 class Past_Talk(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=25, blank=True, null=True)
     description = models.TextField(null=True, blank=True)
 
     def __str__(self):
@@ -142,7 +142,7 @@ class Past_Talk(models.Model):
 
 class Special_Talk(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.CharField(max_length=25, blank=True, null=True)
     description = models.TextField(null=True, blank=True)
     img1 = models.ImageField( upload_to='special_talk/', blank=True, null=True)
     img2 = models.ImageField( upload_to='special_talk/', blank=True, null=True)
@@ -160,7 +160,7 @@ event_type = [
 class Conf_Work_Pres(models.Model):
     headline = models.CharField(max_length=100, null=True, blank=True)
     place = models.CharField(max_length=20, null=True, blank=True)
-    date = models.DateField(null=True, blank=True)
+    date = models.CharField(max_length=25, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     type = models.CharField(max_length=20, choices=event_type, default="Conference")
 

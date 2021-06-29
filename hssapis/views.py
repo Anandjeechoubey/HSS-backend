@@ -29,9 +29,9 @@ def get_apis(request):
 # Home
 @api_view(['GET'])
 def get_home(request):
-    announcements = serializers.AnnouncementSerializer(models.Announcement.objects.all()).data
-    events = serializers.NewsSerializer(models.News.objects.all()).data
-    phd_awarded = serializers.Phd_awardedSerializer(models.Phd_awarded.objects.all()).data
+    announcements = serializers.AnnouncementSerializer(models.Announcement.objects.all(), many=True).data
+    events = serializers.NewsSerializer(models.News.objects.all(), many=True).data
+    phd_awarded = serializers.Phd_awardedSerializer(models.Phd_awarded.objects.all(), many=True).data
     return Response([announcements, events, phd_awarded,])
 
 # Research
@@ -66,7 +66,7 @@ def get_students(request):
 @api_view(['GET'])
 def get_staff(request):
     staff = models.Office_staff.objects.all()
-    serializer = serializers.StaffSerializer(staff)
+    serializer = serializers.StaffSerializer(staff, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
@@ -83,20 +83,20 @@ def get_people(request):
 # Events
 @api_view(['GET'])
 def get_talks(request):
-    past_talks = serializers.Past_TalkSerializer(models.Past_Talk.objects.all()).data
-    special_talk = serializers.Special_TalkSerializer(models.Special_Talk.objects.all()).data
+    past_talks = serializers.Past_TalkSerializer(models.Past_Talk.objects.all(), many=True).data
+    special_talk = serializers.Special_TalkSerializer(models.Special_Talk.objects.all(), many=True).data
     return Response([past_talks, special_talk])
 
 @api_view(['GET'])
 def get_awards(request):
-    awards = serializers.AwardSerializer(models.Award.objects.all()).data
+    awards = serializers.AwardSerializer(models.Award.objects.all(), many=True).data
     return Response(awards)
 
 @api_view(['GET'])
 def get_work(request):
-    work_list = serializers.Conf_Work_PresSerializer(models.Conf_Work_Pres.objects.filter(type="Workshop")).data
-    conf_list = serializers.Conf_Work_PresSerializer(models.Conf_Work_Pres.objects.filter(type="Conference")).data
-    pres_list = serializers.Conf_Work_PresSerializer(models.Conf_Work_Pres.objects.filter(type="Presentation")).data
+    work_list = serializers.Conf_Work_PresSerializer(models.Conf_Work_Pres.objects.filter(type="Workshop"), many=True).data
+    conf_list = serializers.Conf_Work_PresSerializer(models.Conf_Work_Pres.objects.filter(type="Conference"), many=True).data
+    pres_list = serializers.Conf_Work_PresSerializer(models.Conf_Work_Pres.objects.filter(type="Presentation"), many=True).data
     return Response([work_list, pres_list, conf_list])
 
 @api_view(['GET'])

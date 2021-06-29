@@ -62,7 +62,7 @@ class Office_staff(models.Model):
 class Announcement(models.Model):
     date = models.CharField(max_length=25, null=True, blank=True)
     headline = models.CharField(max_length=200, null=True, blank=True)
-    attachments = models.URLField(blank=True, null=True)
+    attachments = models.FileField(upload_to='announcements/', blank=True, null=True)
 
     def __str__(self):
         return self.headline + ' - ' + str(self.date)

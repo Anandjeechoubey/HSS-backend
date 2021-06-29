@@ -23,16 +23,28 @@ def get_apis(request):
         'api/committees',
 
         'api/home',
+        'api/home/announcements/',
+        'api/home/news/',
+        'api/home/phd_awarded/',
     ]
     return Response(routes)
 
 # Home
 @api_view(['GET'])
 def get_home(request):
-    announcements = serializers.AnnouncementSerializer(models.Announcement.objects.all(), many=True).data
-    events = serializers.NewsSerializer(models.News.objects.all(), many=True).data
-    phd_awarded = serializers.Phd_awardedSerializer(models.Phd_awarded.objects.all(), many=True).data
-    return Response([announcements, events, phd_awarded,])
+    return Response("Home")
+
+@api_view(['GET'])
+def get_announcements(request):
+    return Response(serializers.AnnouncementSerializer(models.Announcement.objects.all(), many=True).data)
+
+@api_view(['GET'])
+def get_news(request):
+    return Response(serializers.NewsSerializer(models.News.objects.all(), many=True).data)
+
+@api_view(['GET'])
+def get_phd_awarded(request):
+    return Response(serializers.Phd_awardedSerializer(models.Phd_awarded.objects.all(), many=True).data)
 
 # Research
 @api_view(['GET'])

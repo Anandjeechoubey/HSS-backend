@@ -87,13 +87,24 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'postgres',
+#         'USER': 'postgres',
+#         'PASSWORD': 'pa55word',
+#         'HOST': 'database-hss-iitr.clsus9tut9qb.ap-south-1.rds.amazonaws.com',
+#         'PORT': '5432'
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'pa55word',
-        'HOST': 'database-hss-iitr.clsus9tut9qb.ap-south-1.rds.amazonaws.com',
+        'HOST': 'hss-iitr-website-database.cfz7dmf1pajh.ap-south-1.rds.amazonaws.com',
         'PORT': '5432'
     }
 }
@@ -147,9 +158,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'media'),
 ]
 
-AWS_ACCESS_KEY_ID = 'AKIA2PLT5BNH7KLVZNSM'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'hss-iitr-website'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', None)
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', None)
+AWS_STORAGE_BUCKET_NAME = 'hss-website-s3'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 AWS_S3_OBJECT_PARAMETERS = {
